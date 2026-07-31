@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import logoImg from "./assets/logo.svg";
+import { ReactComponent as IconO } from "./assets/icon-o.svg";
+import { ReactComponent as IconX } from "./assets/icon-x.svg";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+      <NewGameMenu />
+    </>
+  );
+}
+
+function NewGameMenu() {
+  return (
+    <div className="new-game-menu">
+      <Logo />
+      <PlayersMarkContainer />
+      <BtnNewGame btnText={`NEW GAME (VS CPU)`} />
+      <BtnNewGame btnText={`NEW GAME  (VS PLAYER)`} />
     </div>
   );
 }
 
-export default App;
+function Logo() {
+  return <img className="logo" src={logoImg} alt="logo" />;
+}
+
+function PlayersMarkContainer() {
+  return (
+    <div className="players-mark-container">
+      <p>PICK PLAYER 1’S MARK</p>
+      <div className="marks">
+        <BtnMark mark={<IconX className="icon" />} />
+        <BtnMark mark={<IconO />} />
+      </div>
+      <p>REMEMBER : X GOES FIRST</p>
+    </div>
+  );
+}
+
+function BtnMark({ mark }) {
+  return <button className="icon">{mark}</button>;
+}
+
+function BtnNewGame({ btnText }) {
+  return <button>{btnText}</button>;
+}
