@@ -1,7 +1,8 @@
 $color--very-dark-green: #1a2a33;
 $color--dark-green: #1f3641;
-
 $color--dusty-blue: #a8bfc9;
+$color--yellow: #f2b137;
+$color--light-cyan: #31c3bd;
 
 @mixin flex-row {
   display: flex;
@@ -15,6 +16,15 @@ $color--dusty-blue: #a8bfc9;
   align-items: center;
 }
 
+.btn--gen {
+  border: none;
+  outline: none;
+  background: none;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+}
+
 body {
   background-color: $color--very-dark-green;
   color: $color--dusty-blue;
@@ -23,9 +33,7 @@ body {
   box-sizing: border-box;
 
   .new-game-menu {
-    // background-color: red;
     @include flex-column();
-    // text-align: center;
 
     margin: auto;
     margin-top: 120px;
@@ -61,6 +69,70 @@ body {
       p:last-of-type {
         font-size: 12px;
       }
+
+      .marks {
+        background-color: $color--very-dark-green;
+        width: 100%;
+        border-radius: 10px;
+        @include flex-row();
+        padding: 8px;
+        box-sizing: border-box;
+
+        .icon-mark {
+          scale: 0.3;
+
+          path {
+            fill: $color--dusty-blue;
+          }
+        }
+
+        button {
+          // background-color: #a8bfc9;
+          height: 54px;
+          box-sizing: border-box;
+
+          flex: 1;
+          border-radius: inherit;
+          @include flex-row();
+          justify-content: center;
+          &:first-child {
+            background: none;
+          }
+        }
+
+        .mark-active {
+          background-color: $color--dusty-blue !important;
+
+          svg {
+            path {
+              fill: $color--very-dark-green !important;
+            }
+          }
+        }
+      }
+    }
+
+    .btn--chose-opponent {
+      background-color: $color--dusty-blue;
+      width: 100%;
+      border-radius: 10px;
+      height: 67px;
+      box-sizing: border-box;
+      color: $color--very-dark-green;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .btn--chose-opponent--vs-cpu {
+      margin-bottom: 20px;
+      background-color: $color--yellow;
+      border-bottom: 4px solid #7e5a17;
+    }
+
+    .btn--chose-opponent--vs-player {
+      background-color: $color--light-cyan;
+      border-bottom: 4px solid #247a78;
     }
   }
 }
