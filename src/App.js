@@ -12,19 +12,10 @@ export default function App() {
 }
 
 function NewGameMenu() {
-  const [isActive, setIsActive] = useState(false);
-
-  function handleActiveMark() {
-    setIsActive(!isActive);
-  }
-
   return (
     <div className="new-game-menu">
       <Logo />
-      <PlayersMarkContainer
-        handleActiveMark={handleActiveMark}
-        isActive={isActive}
-      />
+      <PlayersMarkContainer />
       <BtnNewGame
         className="btn--gen btn--chose-opponent btn--chose-opponent--vs-cpu"
         btnText={`NEW GAME (VS CPU)`}
@@ -41,28 +32,38 @@ function Logo() {
   return <img className="logo" src={logoImg} alt="logo" />;
 }
 
-function PlayersMarkContainer({ handleActiveMark, isActive }) {
+function PlayersMarkContainer() {
+  const [isActive, setIsActive] = useState(true);
+
+  function active() {
+    setIsActive(true);
+  }
+
+  function noActive() {
+    setIsActive(false);
+  }
+
   return (
     <div className="players-mark-container">
       <p>PICK PLAYER 1’S MARK</p>
       <div className="marks">
         <BtnMark
-          handleActiveMark={handleActiveMark}
           className={
             isActive
-              ? `btn--gen btn--mark-icon`
-              : `btn--gen btn--mark-icon mark-active`
+              ? `btn--gen btn--mark-icon mark-active`
+              : `btn--gen btn--mark-icon`
           }
           mark={<IconX className="icon-mark iconX-mark" />}
+          onClick={active}
         />
         <BtnMark
-          handleActiveMark={handleActiveMark}
           className={
             !isActive
-              ? `btn--gen btn--mark-icon`
-              : `btn--gen btn--mark-icon mark-active`
+              ? `btn--gen btn--mark-icon mark-active`
+              : `btn--gen btn--mark-icon`
           }
           mark={<IconO className="icon-mark iconO-mark" />}
+          onClick={noActive}
         />
       </div>
       <p>REMEMBER : X GOES FIRST</p>
@@ -70,9 +71,9 @@ function PlayersMarkContainer({ handleActiveMark, isActive }) {
   );
 }
 
-function BtnMark({ mark, className, handleActiveMark }) {
+function BtnMark({ mark, className, onClick }) {
   return (
-    <button onClick={handleActiveMark} className={className}>
+    <button onClick={onClick} className={className}>
       {mark}
     </button>
   );
