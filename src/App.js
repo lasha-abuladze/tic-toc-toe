@@ -5,46 +5,37 @@ import { useState } from "react";
 
 export default function App() {
   const [chosenMark, setChosenMark] = useState(`x`);
-  const [chooseOpponent, setChooseOpponent] = useState();
-  // let chosenMark = `x`;
-  // const [playWith, setPlayWith] = useState();
-  // let playWith;
-
-  function startGame() {
-    console.log(
-      `you have chossen ${chosenMark} and play with ${chooseOpponent}`,
-    );
-  }
+  let playWith;
 
   return (
     <>
       <NewGameMenu
-        chosenMark={setChosenMark}
-        playWith={setChooseOpponent}
-        startGame={startGame}
+        setChosenMark={setChosenMark}
+        chosenMark={chosenMark}
+        playWith={playWith}
       />
     </>
   );
 }
 
-function NewGameMenu({ chosenMark, playWith, startGame }) {
+function NewGameMenu({ chosenMark, setChosenMark, playWith }) {
   return (
     <div className="new-game-menu">
       <Logo />
-      <PlayersMarkContainer chosenMark={chosenMark} />
+      <PlayersMarkContainer setChosenMark={setChosenMark} />
       <BtnNewGame
         className="btn--gen btn--chose-opponent btn--chose-opponent--vs-cpu"
         btnText={`NEW GAME (VS CPU)`}
         dataPlayWith="cpu"
+        chosenMark={chosenMark}
         playWith={playWith}
-        startGame={startGame}
       />
       <BtnNewGame
         className="btn--gen btn--chose-opponent btn--chose-opponent--vs-player"
         btnText={`NEW GAME  (VS PLAYER)`}
         dataPlayWith="player"
+        chosenMark={chosenMark}
         playWith={playWith}
-        startGame={startGame}
       />
     </div>
   );
@@ -54,19 +45,17 @@ function Logo() {
   return <img className="logo" src={logoImg} alt="logo" />;
 }
 
-function PlayersMarkContainer({ chosenMark }) {
+function PlayersMarkContainer({ setChosenMark }) {
   const [isActive, setIsActive] = useState(true);
 
   function active(el) {
     setIsActive(true);
-    chosenMark(el.dataset.mark);
-    // console.log(chosenMark);
+    setChosenMark(el.dataset.mark);
   }
 
   function noActive(el) {
     setIsActive(false);
-    chosenMark(el.dataset.mark);
-    // console.log(chosenMark);
+    setChosenMark(el.dataset.mark);
   }
 
   return (
@@ -107,16 +96,18 @@ function BtnMark({ mark, className, onClick, dataMark }) {
   );
 }
 
-function BtnNewGame({ btnText, className, dataPlayWith, playWith, startGame }) {
-  function chooseOpponent(el) {
-    playWith(el.target.dataset.playWith);
-  }
-
+function BtnNewGame({
+  btnText,
+  className,
+  dataPlayWith,
+  chosenMark,
+  playWith,
+}) {
   return (
     <button
-      onClick={(e) => {
-        chooseOpponent(e);
-        startGame();
+      onClick={(el) => {
+        playWith = el.target.dataset.playWith;
+        console.log(chosenMark, playWith);
       }}
       className={className}
       data-play-with={dataPlayWith}
