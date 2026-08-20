@@ -23,6 +23,7 @@ $color--light-cyan: #31c3bd;
   width: fit-content;
   height: fit-content;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
   box-sizing: border-box;
 
   .new-game-menu {
-    @include flex-column();
+    // @include flex-column();
 
     margin: auto;
     margin-top: 120px;
@@ -133,6 +134,51 @@ body {
     .btn--chose-opponent--vs-player {
       background-color: $color--light-cyan;
       border-bottom: 4px solid #247a78;
+    }
+  }
+
+  .game-container {
+    margin: auto;
+    margin-top: 120px;
+    max-width: 460px;
+
+    .game-header {
+      @include flex-row();
+      justify-content: space-between;
+
+      .game-logo {
+        width: 40px;
+      }
+
+      .whose-turn {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 16px 32px;
+        box-sizing: border-box;
+
+        background-color: $color--dark-green;
+        border-radius: 5px;
+
+        border-bottom: 3px solid #151e22;
+      }
+
+      .btn--restart {
+        width: 40px;
+        height: 40px;
+        background-color: $color--dusty-blue;
+        border-radius: 5px;
+        border-bottom: 3px solid #515d63;
+        @include flex-row();
+        justify-content: center;
+      }
+
+      .icon-restart {
+        // width: 10px;
+        // height: 10px;
+        scale: -0.8;
+        rotate: 180deg;
+      }
     }
   }
 }

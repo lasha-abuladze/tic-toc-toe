@@ -1,27 +1,76 @@
 import logoImg from "./assets/logo.svg";
 import { ReactComponent as IconO } from "./assets/icon-o.svg";
 import { ReactComponent as IconX } from "./assets/icon-x.svg";
+import { ReactComponent as IconRestart } from "./assets/icon-restart.svg";
 import { useState } from "react";
 
 export default function App() {
   const [chosenMark, setChosenMark] = useState(`x`);
   let playWith;
 
+  const [page, setPage] = useState(1);
+
   return (
     <>
-      <NewGameMenu
-        setChosenMark={setChosenMark}
-        chosenMark={chosenMark}
-        playWith={playWith}
-      />
+      {page === 0 ? (
+        <NewGameMenu
+          setChosenMark={setChosenMark}
+          chosenMark={chosenMark}
+          playWith={playWith}
+        />
+      ) : (
+        <MainPage />
+      )}
     </>
   );
 }
 
+////////////////////////////////////////////////
+//////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+//////    GAME PAGE             ?/////////
+
+function MainPage() {
+  return (
+    <div className="game-container">
+      <GameHeader />
+    </div>
+  );
+}
+
+function GameHeader() {
+  return (
+    <header className="game-header">
+      <Logo classN="game-logo" />
+      <WhoseTurn />
+      <RestartBtn />
+    </header>
+  );
+}
+
+function WhoseTurn({ classN }) {
+  return <span className="whose-turn">x turn</span>;
+}
+
+function RestartBtn() {
+  return (
+    <button className="btn--gen btn--restart">
+      <IconRestart className="icon-restart" />
+    </button>
+  );
+}
+
+//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+/////////////           NEW GAMW MENU             //////////
+
 function NewGameMenu({ chosenMark, setChosenMark, playWith }) {
   return (
     <div className="new-game-menu">
-      <Logo />
+      <Logo classN="logo-gameMenu" />
       <PlayersMarkContainer setChosenMark={setChosenMark} />
       <BtnNewGame
         className="btn--gen btn--chose-opponent btn--chose-opponent--vs-cpu"
@@ -41,8 +90,8 @@ function NewGameMenu({ chosenMark, setChosenMark, playWith }) {
   );
 }
 
-function Logo() {
-  return <img className="logo" src={logoImg} alt="logo" />;
+function Logo({ classN }) {
+  return <img className={`logo ${classN}`} src={logoImg} alt="logo" />;
 }
 
 function PlayersMarkContainer({ setChosenMark }) {
