@@ -35,6 +35,7 @@ function MainPage() {
   return (
     <div className="game-container">
       <GameHeader />
+      <GameBoard />
     </div>
   );
 }
@@ -59,6 +60,26 @@ function RestartBtn() {
       <IconRestart className="icon-restart" />
     </button>
   );
+}
+
+function GameBoard() {
+  return (
+    <div className="game-board">
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+      <MarkCell />
+    </div>
+  );
+}
+
+function MarkCell() {
+  return <button className="btn--gen btn--mark-cell"></button>;
 }
 
 //////////////////////////////////////////////////////////

@@ -139,7 +139,7 @@ body {
 
   .game-container {
     margin: auto;
-    margin-top: 120px;
+    margin-top: 24px;
     max-width: 460px;
 
     .game-header {
@@ -174,10 +174,27 @@ body {
       }
 
       .icon-restart {
-        // width: 10px;
-        // height: 10px;
         scale: -0.8;
         rotate: 180deg;
+      }
+    }
+
+    .game-board {
+      height: 328px;
+      margin-top: 64px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 20px;
+
+      .btn--mark-cell {
+        background-color: #151e22;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: $color--dark-green;
+        border-bottom: 3px solid #151e22;
       }
     }
   }
