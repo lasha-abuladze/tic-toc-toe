@@ -36,6 +36,7 @@ function MainPage() {
     <div className="game-container">
       <GameHeader />
       <GameBoard />
+      <GameFooter />
     </div>
   );
 }
@@ -80,6 +81,25 @@ function GameBoard() {
 
 function MarkCell() {
   return <button className="btn--gen btn--mark-cell"></button>;
+}
+
+function GameFooter() {
+  return (
+    <div className="game-footer">
+      <ResutltDiv resultFor="x (you)" result="14" />
+      <ResutltDiv resultFor="ties" result="32" />
+      <ResutltDiv resultFor="o (cpu)" result="11" />
+    </div>
+  );
+}
+
+function ResutltDiv({ resultFor, result }) {
+  return (
+    <div className="result-div">
+      <span>{resultFor}</span>
+      <span>{result}</span>
+    </div>
+  );
 }
 
 //////////////////////////////////////////////////////////

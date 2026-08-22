@@ -197,5 +197,39 @@ body {
         border-bottom: 3px solid #151e22;
       }
     }
+
+    .game-footer {
+      margin-top: 20px;
+
+      @include flex-row();
+      justify-content: space-between;
+      gap: 20px;
+
+      .result-div {
+        width: 100%;
+        height: 64px;
+        border-radius: 10px;
+        background-color: $color--dusty-blue;
+        @include flex-column();
+        justify-content: center;
+        gap: 8px;
+        color: $color--dark-green;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 18px;
+
+        &:first-child {
+          background-color: $color--light-cyan;
+        }
+
+        &:last-child {
+          background-color: $color--yellow;
+        }
+
+        span:first-child {
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
